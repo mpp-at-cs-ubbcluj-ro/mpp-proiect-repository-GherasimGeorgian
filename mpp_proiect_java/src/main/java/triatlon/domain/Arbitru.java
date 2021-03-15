@@ -18,8 +18,16 @@ public class Arbitru extends Entity<Long>{
         this.email = email;
         this.userName = userName;
         this.password = password;
-
     }
+
+    @Override
+    public String toString() {
+        return "Arbitru{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+
     public String getFirstName() {
         return firstName;
     }

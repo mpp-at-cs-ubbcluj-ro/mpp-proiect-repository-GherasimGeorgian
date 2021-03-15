@@ -8,14 +8,13 @@ public class Participant extends Entity<Long> {
 
     private String firstName;
     private String lastName;
-    private List<Rezultat> rezultate;
     private Integer varsta;
-    private Integer totalPuncte;
 
-    public Participant(String firstName, String lastName) {
+    public Participant(Long idParticipant,String firstName, String lastName,Integer varsta) {
+        setId(idParticipant);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.rezultate = new ArrayList<Rezultat>();
+        this.varsta = varsta;
     }
 
     public String getFirstName() {
@@ -34,6 +33,9 @@ public class Participant extends Entity<Long> {
         this.lastName = lastName;
     }
 
+    public Integer getVarsta(){
+        return varsta;
+    }
 
   @Override
     public String toString() {
