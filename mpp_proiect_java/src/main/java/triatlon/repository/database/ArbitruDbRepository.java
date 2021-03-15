@@ -26,20 +26,6 @@ public class ArbitruDbRepository implements IArbitruRepository {
 
     @Override
     public void save(Arbitru entity) {
-//       // logger.traceEntry("saving task {} ",entity);
-//        Connection con=dbUtils.getConnection();
-//        try(PreparedStatement preStmt=con.prepareStatement("insert into SortingTasks values (?,?,?,?,?)")){
-//            preStmt.setInt(1,entity.getId());
-//            preStmt.setString(2,entity.getDesc());
-//            preStmt.setInt(3,entity.getNrElem());
-//            preStmt.setString(5,entity.getAlg().name());
-//            preStmt.setString(4,entity.getOrder().name());
-//            int result=preStmt.executeUpdate();
-//        }catch (SQLException ex){
-//           // logger.error(ex);
-//            System.out.println("Error DB "+ex);
-//        }
-//       // logger.traceExit();
 
     }
 
@@ -107,6 +93,8 @@ public class ArbitruDbRepository implements IArbitruRepository {
         return tasks;
     }
 
-
+    public boolean loginArbitru(String username, String password){
+        return true;
+    }
 
 }

@@ -58,7 +58,7 @@ public class RezultatDbRepository implements IRezultatRepository {
             try(ResultSet result=preStmt.executeQuery()) {
                 if (result.next()) {
                     Long idrezultat = result.getLong("idRezultat");
-                    Long idproba = result.getLong("idProba");
+                    Long idproba = result.getLong("idproba");
                     Long idparticipant = result.getLong("idParticipant");
                     Integer numarpuncte = result.getInt("numarpuncte");
 
@@ -86,7 +86,35 @@ public class RezultatDbRepository implements IRezultatRepository {
             try(ResultSet result=preStmt.executeQuery()) {
                 while (result.next()) {
                     Long idrezultat = result.getLong("idRezultat");
-                    Long idproba = result.getLong("idProba");
+                    Long idproba = result.getLong("idproba");
+                    Long idparticipant = result.getLong("idParticipant");
+                    Integer numarpuncte = result.getInt("numarpuncte");
+                    System.out.println(idproba);
+                    System.out.println(idparticipant);
+                    Rezultat ab = new Rezultat(idrezultat, probaDbRepository.findOne(idproba), participantDbRepository.findOne(idparticipant), numarpuncte);
+                    tasks.add(ab);
+                }
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+            dbUtils.CloseConnection(con);
+            System.out.println("Error DB "+e);
+        }
+        logger.traceExit(tasks);
+        dbUtils.CloseConnection(con);
+        return tasks;
+    }
+
+
+    public List<Rezultat> filterByProba(Proba proba){
+        Connection con=dbUtils.getConnection();
+        List<Rezultat> tasks=new ArrayList<>();
+        try(PreparedStatement preStmt=con.prepareStatement("select * from rezultat where idproba=?")) {
+            preStmt.setLong(1,proba.getId());
+            try(ResultSet result=preStmt.executeQuery()) {
+                while (result.next()) {
+                    Long idrezultat = result.getLong("idRezultat");
+                    Long idproba = result.getLong("idproba");
                     Long idparticipant = result.getLong("idParticipant");
                     Integer numarpuncte = result.getInt("numarpuncte");
                     System.out.println(idproba);
