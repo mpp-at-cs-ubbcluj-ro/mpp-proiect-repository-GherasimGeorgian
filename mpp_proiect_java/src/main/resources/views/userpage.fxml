@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triatlon.controller.UserPageController">
+   <children>
+      <Label layoutX="14.0" layoutY="21.0" text="Arbitru:" />
+      <Label fx:id="lblNume" layoutX="60.0" layoutY="20.0" prefHeight="18.0" prefWidth="88.0" text="------------" />
+      <Label fx:id="lblPrenume" layoutX="140.0" layoutY="21.0" prefHeight="18.0" prefWidth="88.0" text="--------------" />
+      <TableView layoutX="48.0" layoutY="100.0" prefHeight="259.0" prefWidth="297.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
