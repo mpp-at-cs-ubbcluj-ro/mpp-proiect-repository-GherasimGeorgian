@@ -1,0 +1,9 @@
+16:22:22,180 [1] INFO - Creating ArbitruRepository 
+16:22:22,196 [1] INFO - Creating ProbaRepository 
+16:22:22,202 [1] INFO - Creating ParticipantRepository 
+16:22:22,206 [1] INFO - Creating RezultatRepository 
+16:22:22,258 [1] INFO - getAllArbirii  vasile
+16:22:22,268 [1] INFO - Entering findOne with value 2
+16:22:22,278 [1] INFO - Exiting findOne with value Proba - tip proba: ciclism|distanta=22
+16:22:22,285 [1] INFO - Entering findOne with value 1
+16:22:22,292 [1] INFO - Exiting findOne with value Participant - nume: vasile|prenume=mihai

@@ -10,8 +10,8 @@ using triatlon.domain;
 [assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Tests")]
 namespace triatlon.repository
 {
-     class ArbitruRepository : IRepository<long, Arbitru>
-    {
+     class ArbitruRepository : IArbitruRepository
+     {
         private static readonly ILog log = LogManager.GetLogger("ArbitruRepository");
         IDictionary<String, string> props;      
       
@@ -21,6 +21,11 @@ namespace triatlon.repository
         {
             log.Info("Creating ArbitruRepository ");
             this.props = props;
+        }
+
+        public bool loginArbitru(string username, string password)
+        {
+            return true;
         }
         public Arbitru findOne(long id)
         {
@@ -73,6 +78,7 @@ namespace triatlon.repository
                     {
                         long idArbitru = dataR.GetInt64(0);
                         String firstName = dataR.GetString(1);
+                        log.Info("getAllArbirii" + "  " + firstName );
                         String lastName = dataR.GetString(2);
                         String email = dataR.GetString(3);
                         String username = dataR.GetString(4);

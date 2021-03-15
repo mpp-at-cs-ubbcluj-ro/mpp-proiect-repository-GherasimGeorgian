@@ -6,15 +6,27 @@ using System.Threading.Tasks;
 
 namespace triatlon.domain
 {
-    class Rezultat
+    class Rezultat : Entity<long>
     {
-        public long idParticipant { get; set; }
-        public int tipProba { get; set; }
-        public int numarPuncte { get; set; }
-        public long idArbitru { get; set; }
-        public long idCompetitie { get; set; }
-        public DateTime timp_pornire { get; set; }
+        public long Id { get; set; }
 
-        public DateTime timp_finalizare { get; set; }
+        public Proba proba { get; set; }
+        public Participant participant { get; set; }
+
+        public int numarPuncte { get; set; }
+
+        public Rezultat(long idrezultat1,Proba proba1, Participant participant1, int numarpuncte1)
+        {
+            this.Id = idrezultat1;
+            this.proba = proba1;
+            this.participant = participant1;
+            this.numarPuncte = numarpuncte1;
+            
+        }
+
+        public override string ToString()
+        {
+            return "Rezultat " + proba.tipProba + " " + participant.firstName + " " + numarPuncte;
+        }
     }
 }
