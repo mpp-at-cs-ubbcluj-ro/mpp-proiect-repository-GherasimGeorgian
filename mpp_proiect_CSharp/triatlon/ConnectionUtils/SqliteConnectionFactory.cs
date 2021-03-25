@@ -21,7 +21,7 @@ namespace ConnectionUtils
             //return new SqliteConnection(connectionString);
 
             // Windows SQLite Connection, fisierul .db ar trebuie sa fie in directorul debug/bin
-            String connectionString = "Data Source=tasks.db;Version=3";
+         
             return new SQLiteConnection(props["ConnectionString"]);
         }
     }

@@ -38,3 +38,5 @@ C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-Gherasim
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\triatlon\obj\Debug\triatlon.csproj.CopyComplete
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\triatlon\obj\Debug\triatlon.exe
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\triatlon\obj\Debug\triatlon.pdb
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\triatlon\obj\Debug\triatlon.MainWindowForm.resources
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\triatlon\obj\Debug\triatlon.LoginForm.resources

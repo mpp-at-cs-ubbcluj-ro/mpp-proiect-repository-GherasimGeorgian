@@ -101,13 +101,20 @@
     <Compile Include="domain\Arbitru.cs" />
     <Compile Include="domain\Entity.cs" />
     <Compile Include="domain\Participant.cs" />
+    <Compile Include="domain\ParticipantDTO.cs" />
     <Compile Include="domain\Proba.cs" />
     <Compile Include="domain\Rezultat.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="MainWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainWindowForm.Designer.cs">
+      <DependentUpon>MainWindowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +130,14 @@
     <Compile Include="repository\database\ParticipantRepository.cs" />
     <Compile Include="repository\RepositoryException.cs" />
     <Compile Include="repository\database\RezultatRepository.cs" />
+    <Compile Include="service\Service.cs" />
+    <Compile Include="utils\ComboboxItem.cs" />
+    <EmbeddedResource Include="MainWindowForm.resx">
+      <DependentUpon>MainWindowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

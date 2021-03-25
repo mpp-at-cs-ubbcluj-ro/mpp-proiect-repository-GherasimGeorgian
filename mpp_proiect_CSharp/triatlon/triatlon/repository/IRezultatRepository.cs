@@ -9,6 +9,6 @@ namespace triatlon.repository
 {
     interface IRezultatRepository : IRepository<long, Rezultat>
     {
-        List<Rezultat> filterByProba(Proba proba);
+        IEnumerable<Rezultat> filterByProba(Proba proba);
     }
 }

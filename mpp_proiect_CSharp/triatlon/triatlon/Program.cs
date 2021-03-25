@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using triatlon.domain;
 using triatlon.repository;
 using triatlon.repository.database;
+using triatlon.service;
 
 [assembly: log4net.Config.XmlConfigurator(Watch =true)]
 namespace triatlon
@@ -64,7 +65,15 @@ namespace triatlon
             participantRepository.findAll().ToList().ForEach(Console.WriteLine);
             rezultatRepository.findAll().ToList().ForEach(Console.WriteLine);
 
-            Application.Run(new Form1());
+            Service service = new Service(arbitruRepository, probaRepository, participantRepository,rezultatRepository);
+            service.GetParticipantDTOs();
+            LoginForm loginForm = new LoginForm();
+            MainWindowForm mainWindowForm = new MainWindowForm();
+
+            loginForm.Set(service, mainWindowForm);
+            mainWindowForm.Set(service, loginForm);
+
+            Application.Run(loginForm);
         }
     }
 }

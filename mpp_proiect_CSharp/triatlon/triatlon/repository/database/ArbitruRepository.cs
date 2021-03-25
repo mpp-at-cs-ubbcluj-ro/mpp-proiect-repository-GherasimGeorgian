@@ -25,8 +25,32 @@ namespace triatlon.repository
 
         public bool loginArbitru(string username, string password)
         {
-            return true;
+            IDbConnection con = DBUtils.getConnection(props);
+            using (var comm = con.CreateCommand())
+            {
+                comm.CommandText = "select count(*) from arbitru where username=@un and password=@pass";
+                IDbDataParameter param1 = comm.CreateParameter();
+                param1.ParameterName = "@un";
+                param1.Value = username;
+                comm.Parameters.Add(param1);
+
+
+                IDbDataParameter param2 = comm.CreateParameter();
+                param2.ParameterName = "@pass";
+                param2.Value = password;
+                comm.Parameters.Add(param2);
+
+                int count = Convert.ToInt32(comm.ExecuteScalar());
+                if (count > 0)
+                    return true;
+                else 
+                    return false;
+            }
+            return false;
         }
+
+
+
         public Arbitru findOne(long id)
         {
             log.InfoFormat("Entering findOne with value {0}", id);
