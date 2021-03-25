@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using triatlon.domain;
 using triatlon.repository;
+using triatlon.repository.database;
+using triatlon.service;
 
 [assembly: log4net.Config.XmlConfigurator(Watch =true)]
 namespace triatlon
@@ -52,11 +54,26 @@ namespace triatlon
             properties.Add("ConnectionString", GetConnectionStringByName("triatlonDB"));
 
 
-            IRepository<long, Arbitru> arbitruRepository = new ArbitruRepository(properties);
+            IArbitruRepository arbitruRepository = new ArbitruRepository(properties);
+            IProbaRepository probaRepository = new ProbaRepository(properties);
+            IParticipantRepository participantRepository = new ParticipantRepository(properties);
+            IRezultatRepository rezultatRepository = new RezultatRepository(properties, probaRepository, participantRepository);
+            
 
             arbitruRepository.findAll().ToList().ForEach(Console.WriteLine);
+            probaRepository.findAll().ToList().ForEach(Console.WriteLine);
+            participantRepository.findAll().ToList().ForEach(Console.WriteLine);
+            rezultatRepository.findAll().ToList().ForEach(Console.WriteLine);
 
-            Application.Run(new Form1());
+            Service service = new Service(arbitruRepository, probaRepository, participantRepository,rezultatRepository);
+            service.GetParticipantDTOs();
+            LoginForm loginForm = new LoginForm();
+            MainWindowForm mainWindowForm = new MainWindowForm();
+
+            loginForm.Set(service, mainWindowForm);
+            mainWindowForm.Set(service, loginForm);
+
+            Application.Run(loginForm);
         }
     }
 }

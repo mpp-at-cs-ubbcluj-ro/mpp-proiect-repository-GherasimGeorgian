@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using triatlon.domain;
-[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Tests")]
+
 namespace triatlon.repository
 {
-    class TestRepository
+    interface IRezultatRepository : IRepository<long, Rezultat>
     {
-       
+        IEnumerable<Rezultat> filterByProba(Proba proba);
     }
 }

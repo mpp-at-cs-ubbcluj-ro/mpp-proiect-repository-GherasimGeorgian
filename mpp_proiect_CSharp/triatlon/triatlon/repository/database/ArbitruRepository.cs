@@ -10,8 +10,8 @@ using triatlon.domain;
 [assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Tests")]
 namespace triatlon.repository
 {
-     class ArbitruRepository : IRepository<long, Arbitru>
-    {
+     class ArbitruRepository : IArbitruRepository
+     {
         private static readonly ILog log = LogManager.GetLogger("ArbitruRepository");
         IDictionary<String, string> props;      
       
@@ -22,6 +22,35 @@ namespace triatlon.repository
             log.Info("Creating ArbitruRepository ");
             this.props = props;
         }
+
+        public bool loginArbitru(string username, string password)
+        {
+            IDbConnection con = DBUtils.getConnection(props);
+            using (var comm = con.CreateCommand())
+            {
+                comm.CommandText = "select count(*) from arbitru where username=@un and password=@pass";
+                IDbDataParameter param1 = comm.CreateParameter();
+                param1.ParameterName = "@un";
+                param1.Value = username;
+                comm.Parameters.Add(param1);
+
+
+                IDbDataParameter param2 = comm.CreateParameter();
+                param2.ParameterName = "@pass";
+                param2.Value = password;
+                comm.Parameters.Add(param2);
+
+                int count = Convert.ToInt32(comm.ExecuteScalar());
+                if (count > 0)
+                    return true;
+                else 
+                    return false;
+            }
+            return false;
+        }
+
+
+
         public Arbitru findOne(long id)
         {
             log.InfoFormat("Entering findOne with value {0}", id);
@@ -73,6 +102,7 @@ namespace triatlon.repository
                     {
                         long idArbitru = dataR.GetInt64(0);
                         String firstName = dataR.GetString(1);
+                        log.Info("getAllArbirii" + "  " + firstName );
                         String lastName = dataR.GetString(2);
                         String email = dataR.GetString(3);
                         String username = dataR.GetString(4);

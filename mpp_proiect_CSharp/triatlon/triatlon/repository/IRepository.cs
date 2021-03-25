@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace triatlon.repository
 {
-    interface IRepository<ID, E>
+     interface IRepository<ID, E>
     {
 		/// <summary>
 		/// Finds an item

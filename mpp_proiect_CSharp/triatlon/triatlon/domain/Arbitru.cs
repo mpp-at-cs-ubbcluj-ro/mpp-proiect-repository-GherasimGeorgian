@@ -22,12 +22,12 @@ namespace triatlon.domain
   
         public Arbitru(long id, string firstname, string lastname, string email1, string username1, string password1)
         {
-            Id = id;
-            firstName = firstname;
-            lastName = lastname;
-            email = email1;
-            username = username1;
-            password = password1;
+            this.Id = id;
+            this.firstName = firstname;
+            this.lastName = lastname;
+            this.email = email1;
+            this.username = username1;
+            this.password = password1;
 
         }
         public override string ToString()
