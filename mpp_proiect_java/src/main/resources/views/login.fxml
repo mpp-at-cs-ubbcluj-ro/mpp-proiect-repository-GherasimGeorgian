@@ -8,7 +8,7 @@
       <Button fx:id="btnLogin" layoutX="409.0" layoutY="222.0" mnemonicParsing="false" text="Login" />
       <Label layoutX="261.0" layoutY="137.0" prefHeight="18.0" prefWidth="56.0" text="Email:" />
       <Label layoutX="261.0" layoutY="177.0" text="Parola:" />
-      <TextField fx:id="txtEmail" layoutX="306.0" layoutY="134.0" />
+      <TextField fx:id="txtUserName" layoutX="306.0" layoutY="134.0" />
       <PasswordField fx:id="txtPass" layoutX="306.0" layoutY="173.0" />
    </children>
 </AnchorPane>

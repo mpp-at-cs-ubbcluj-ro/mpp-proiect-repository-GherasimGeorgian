@@ -53,11 +53,11 @@ public class RezultatDbRepository implements IRezultatRepository {
         logger.traceEntry("finding task with id {} ",id_param);
         Connection con=dbUtils.getConnection();
 
-        try(PreparedStatement preStmt=con.prepareStatement("select * from rezultat where idRezultat=?")){
+        try(PreparedStatement preStmt=con.prepareStatement("select * from rezultat where idrezultat=?")){
             preStmt.setLong(1,id_param);
             try(ResultSet result=preStmt.executeQuery()) {
                 if (result.next()) {
-                    Long idrezultat = result.getLong("idRezultat");
+                    Long idrezultat = result.getLong("idrezultat");
                     Long idproba = result.getLong("idproba");
                     Long idparticipant = result.getLong("idParticipant");
                     Integer numarpuncte = result.getInt("numarpuncte");
@@ -85,7 +85,7 @@ public class RezultatDbRepository implements IRezultatRepository {
         try(PreparedStatement preStmt=con.prepareStatement("select * from rezultat")) {
             try(ResultSet result=preStmt.executeQuery()) {
                 while (result.next()) {
-                    Long idrezultat = result.getLong("idRezultat");
+                    Long idrezultat = result.getLong("idrezultat");
                     Long idproba = result.getLong("idproba");
                     Long idparticipant = result.getLong("idParticipant");
                     Integer numarpuncte = result.getInt("numarpuncte");
