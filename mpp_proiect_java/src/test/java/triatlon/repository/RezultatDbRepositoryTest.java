@@ -1,11 +1,8 @@
 package triatlon.repository;
 
 import junit.framework.TestCase;
-import org.junit.Assert;
 import org.junit.Test;
-import triatlon.config.ApplicationContext;
 import triatlon.domain.Rezultat;
-import triatlon.repository.database.RezultatDbRepository;
 
 public class RezultatDbRepositoryTest extends TestCase {
 

@@ -27,6 +27,6 @@
             <TableColumn fx:id="tableColumnpunctaj" prefWidth="75.0" text="punctaj" />
         </columns>
       </TableView>
-      <Button fx:id="btnlogout" layoutX="916.0" layoutY="413.0" mnemonicParsing="false" text="Logout" />
+      <Button fx:id="btnlogout" layoutX="916.0" layoutY="413.0" mnemonicParsing="false" text="Logout" onAction="#handleLogout" />
    </children>
 </AnchorPane>

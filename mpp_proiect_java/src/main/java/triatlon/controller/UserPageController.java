@@ -1,5 +1,11 @@
 package triatlon.controller;
 
+import javafx.application.Platform;
+import javafx.scene.Node;
+import triatlon.services.ITriatlonObserver;
+import triatlon.services.ITriatlonServices;
+import triatlon.services.TriatlonException;
+import domain.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,32 +20,49 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import triatlon.domain.*;
-import triatlon.service.ServiceTriatlon;
-import triatlon.utils.events.ChangeEvent;
-import triatlon.utils.observer.Observer;
+import service.ServiceTriatlon;
+import utils.events.ChangeEvent;
+import utils.observer.Observer;
 
-import javax.security.auth.login.LoginContext;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class UserPageController implements Observer<ChangeEvent> {
+public class UserPageController implements ITriatlonObserver {
 
-    private ServiceTriatlon service;
+
     private Arbitru arbitru = null;
-
-    public void setService(ServiceTriatlon service,Arbitru arbitru) {
-        this.service=service;
+    private ITriatlonServices server;
+    public void setService(Arbitru arbitru) {
         this.arbitru = arbitru;
-        service.addObserver(this);
         setNumePrenumeArbitru();
-        setPrietenieDTOTable();
+        setParticipantiDTOTable();
         initModelProbe();
 
     }
+    public void setServer(ITriatlonServices server){
+        this.server=server;
+    }
+
+
+    public void rezultatReceived(Rezultat rezultat) throws TriatlonException {
+        Platform.runLater(()->{
+            if (rezultat.getProba().getId().toString().equals(String.valueOf(arbitru.getIdProbaArbitru())))
+                modelRezultate.add(rezultat);
+            int i = 0;
+            for (ParticipantDTO part : modelParticipantDTO) {
+                if (part.getFirstName().equals(rezultat.getParticipant().getFirstName()) &&
+                        part.getLastName().equals(rezultat.getParticipant().getLastName())) {
+                    modelParticipantDTO.set(i, new ParticipantDTO(part.getFirstName(), part.getLastName(), part.getPunctaj() + rezultat.getNumarPuncte()));
+                    break;
+                }
+                i++;
+            }
+        });
+    }
+
     @FXML
     Label lblNume;
 
@@ -80,51 +103,62 @@ public class UserPageController implements Observer<ChangeEvent> {
 
     private ObservableList<Rezultat> modelRezultate = FXCollections.observableArrayList();
     private ObservableList<Proba> modelProbe = FXCollections.observableArrayList();
-    @Override
-    public void update(ChangeEvent messageTaskChangeEvent) {
-        initModel();
-        if(comboBoxProba.getSelectionModel().getSelectedItem() != null){
-            initModelRezultate();
+
+
+    public void handleLogout(ActionEvent actionEvent) {
+        logout();
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+    }
+
+    void logout() {
+        try {
+            server.logout(arbitru, this);
+        } catch (TriatlonException e) {
+            System.out.println("Logout error " + e);
         }
 
     }
-    private void initModel() {
-        modelParticipantDTO.setAll(StreamSupport.stream(service.getParticipantiDTO().spliterator(), false)
-                .collect(Collectors.toList()));
-    }
+
+
+
+
     private void initModelProbe(){
-        modelProbe.setAll(StreamSupport.stream(service.getProbe().spliterator(), false)
-                .collect(Collectors.toList()));
+        try {
+            modelProbe.add(server.getProbaArbitrubyId(arbitru.getIdProbaArbitru()));
+        } catch (TriatlonException e) {
+            System.out.println("initModelProbe error " + e);
+        }
     }
 
-    private void initModelRezultate(){
-        Proba proba = (Proba) comboBoxProba.getSelectionModel().getSelectedItem();
-        modelRezultate.setAll(StreamSupport.stream(service.filterbyProba(proba).spliterator(), false)
-                .collect(Collectors.toList()));
-    }
 
-    private void setPrietenieDTOTable() {
-        modelParticipantDTO.setAll(StreamSupport.stream(service.getParticipantiDTO().spliterator(), false)
-                .collect(Collectors.toList()));
 
-        tableColumnPDTOFirstName.setCellValueFactory(new PropertyValueFactory<ParticipantDTO, String>("firstName"));
-        tableColumnDatePDTOLastName.setCellValueFactory(new PropertyValueFactory<ParticipantDTO, String>("lastName"));
-        tableColumnDatePDTOPunctaj.setCellValueFactory(new PropertyValueFactory<ParticipantDTO, Integer>("punctaj"));
-        tableViewParticipantDTO.setItems(modelParticipantDTO);
+    private void setParticipantiDTOTable() {
+        try {
+            modelParticipantDTO.setAll(server.getParticipantiDTO(arbitru));
 
+            tableColumnPDTOFirstName.setCellValueFactory(new PropertyValueFactory<ParticipantDTO, String>("firstName"));
+            tableColumnDatePDTOLastName.setCellValueFactory(new PropertyValueFactory<ParticipantDTO, String>("lastName"));
+            tableColumnDatePDTOPunctaj.setCellValueFactory(new PropertyValueFactory<ParticipantDTO, Integer>("punctaj"));
+            tableViewParticipantDTO.setItems(modelParticipantDTO);
+        }catch (TriatlonException ex){
+
+        }
     }
 
     private void setRezultateTable(){
-        Proba proba = (Proba) comboBoxProba.getSelectionModel().getSelectedItem();
-        modelRezultate.setAll(StreamSupport.stream(service.filterbyProba(proba).spliterator(), false)
-                .collect(Collectors.toList()));
+        try {
+            Proba proba = (Proba) comboBoxProba.getSelectionModel().getSelectedItem();
 
-        tableColumnfirstName.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getParticipant().getFirstName()));;
-        tableColumnlastName.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getParticipant().getLastName()));
-        tableColumntipProba.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getProba().getTipProba()));
-        tableColumnpunctaj.setCellValueFactory(new PropertyValueFactory<Rezultat, Integer>("numarPuncte"));
-        tableViewRezultate.setItems(modelRezultate);
+            modelRezultate.setAll(server.filterbyProba(proba));
 
+            tableColumnfirstName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getParticipant().getFirstName()));
+            tableColumnlastName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getParticipant().getLastName()));
+            tableColumntipProba.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getProba().getTipProba()));
+            tableColumnpunctaj.setCellValueFactory(new PropertyValueFactory<Rezultat, Integer>("numarPuncte"));
+            tableViewRezultate.setItems(modelRezultate);
+        }catch (TriatlonException ex){
+            System.out.println(ex.getMessage());
+        }
     }
     @FXML
     public void initialize() {
@@ -135,6 +169,8 @@ public class UserPageController implements Observer<ChangeEvent> {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
                 try {
+
+
                     Proba proba = (Proba)comboBoxProba.getSelectionModel().getSelectedItem();
                     setRezultateTable();
 
@@ -149,14 +185,18 @@ public class UserPageController implements Observer<ChangeEvent> {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     ParticipantDTO rowData = row.getItem();
-
+                    Participant participant_selectat = null;
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setLocation(getClass().getResource("/views/adauga_rezultat.fxml"));
                         AnchorPane root=fxmlLoader.load();
                         AdaugaRezultatController adaugaRezultatController = fxmlLoader.getController();
-                        Participant participant_selectat = service.findParticipantByNumePrenume(row.getItem().getFirstName(),row.getItem().getLastName());
-                        adaugaRezultatController.setService(service,participant_selectat);
+                        try {
+                             participant_selectat = server.findParticipantByNumePrenume(row.getItem().getFirstName(), row.getItem().getLastName());
+                        }catch(TriatlonException ex){
+                            System.out.println(ex.getMessage());
+                        }
+                        adaugaRezultatController.setService(participant_selectat,server,arbitru);
                         Scene scene = new Scene(root, 400, 400);
 
                         Stage stagePageUser = new Stage();
@@ -174,29 +214,7 @@ public class UserPageController implements Observer<ChangeEvent> {
             });
             return row ;
         });
-        btnlogout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Stage stage = (Stage) btnlogout.getScene().getWindow();
-                stage.close();
-                try {
 
-                    Stage stageLogin = new Stage();
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/views/login.fxml"));
-                    AnchorPane root = loader.load();
-
-                    LoginController ctrl = loader.getController();
-                    ctrl.setService(service);
-                    stageLogin.setScene(new Scene(root, 700, 500));
-                    stageLogin.setTitle("LoginPage");
-                    stageLogin.show();
-                }catch(Exception ex){
-
-                }
-
-            }
-        });
 
     }
 

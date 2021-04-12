@@ -1,27 +1,39 @@
 package triatlon.controller;
 
+import javafx.scene.Node;
+import javafx.stage.WindowEvent;
+import triatlon.services.ITriatlonServices;
+import domain.Arbitru;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import triatlon.domain.Arbitru;
-import triatlon.service.ServiceTriatlon;
-import triatlon.utils.password.PasswordHashing;
+import service.ServiceTriatlon;
+import triatlon.services.TriatlonException;
 
 public class LoginController {
-    private ServiceTriatlon service;
     private Arbitru arbitru = null;
+    private ITriatlonServices server;
+    private UserPageController upController;
+    private Parent mainChatParent;
 
-    public void setService(ServiceTriatlon service) {
-        this.service=service;
+    public void setServer(ITriatlonServices server){
+        this.server=server;
     }
+
+    public void setUserPageController(UserPageController upController) {
+        this.upController = upController;
+    }
+    public void setParent(Parent p){
+        mainChatParent=p;
+    }
+
 
     //textfields
     @FXML
@@ -39,70 +51,47 @@ public class LoginController {
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    if (txtUserName.getText().isEmpty() || txtPass.getText().isEmpty()) {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Warning");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Emailul si parola nu trebuie sa fie nule!");
-                        alert.showAndWait();
-                    } else {
-                        boolean rez = getArbitrubyUsernameandPass(txtUserName.getText(), txtPass.getText());// PasswordHashing.doHashing(txtPass.getText()));
-                        if (rez == false) {
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setTitle("Warning");
-                            alert.setHeaderText(null);
-                            alert.setContentText("Userul introdus nu exista!");
-                            alert.showAndWait();
-                            txtUserName.clear();
-                            txtPass.clear();
-                        } else {
-                            try {
-                                arbitru = service.getArbitruByName(txtUserName.getText());
-                                FXMLLoader fxmlLoader = new FXMLLoader();
-                                fxmlLoader.setLocation(getClass().getResource("/views/userpage.fxml"));
-                                AnchorPane root = fxmlLoader.load();
 
-                                UserPageController ctrl = fxmlLoader.getController();
-                                ctrl.setService(service, arbitru);
 
-                                Stage stagePageUser = new Stage();
-                                Scene scene = new Scene(root, 1200, 562);
 
-                                stagePageUser.setTitle("UserPage");
-                                stagePageUser.setScene(scene);
-                                stagePageUser.setResizable(false);
-                                stagePageUser.show();
-                            } catch (Exception ex) {
-                                System.out.println(ex);
-                            }
 
-                            Stage stage = (Stage) txtUserName.getScene().getWindow();
-                            stage.close();
+                try{
+                    String nume = txtUserName.getText();
+                    String passwd = txtPass.getText();
+                    arbitru = server.getArbitrubyName(nume);
+
+                    server.login(arbitru, upController);
+                    // Util.writeLog("User succesfully logged in "+crtUser.getId());
+                    Stage stage=new Stage();
+                    stage.setTitle("Traitlon Window for " +arbitru.getId());
+                    stage.setScene(new Scene(mainChatParent));
+
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent event) {
+                            upController.logout();
+                            System.exit(0);
                         }
-                    }
-                }catch(Exception ex){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Warning");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Date introduse sunt invalide!");
+                    });
+
+                    stage.show();
+                    upController.setService(arbitru);
+                    //upController.setLoggedFriends();
+
+                    Stage stagex = (Stage) btnLogin.getScene().getWindow();
+                    stagex.close();
+                }   catch (TriatlonException e) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("MPP triatlon");
+                    alert.setHeaderText("Authentication failure");
+                    alert.setContentText("Wrong username or password");
                     alert.showAndWait();
-                    txtUserName.clear();
-                    txtPass.clear();
                 }
+
+
+
             }
         });
-    }
-    private boolean getArbitrubyUsernameandPass(String email,String password){
-        boolean rez = false;
-        try{
-            rez = service.loginArbitru(email,password);
-            return rez;
-        }catch(Exception e){
-            return false;
-        }
-
-
     }
 
 

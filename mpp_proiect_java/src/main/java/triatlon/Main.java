@@ -5,21 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import repository.IArbitruRepository;
+import repository.IParticipantRepository;
+import repository.IProbaRepository;
+import repository.IRezultatRepository;
+import repository.database.ArbitruDbRepository;
+import repository.database.ParticipantDbRepository;
+import repository.database.ProbaDbRepository;
+import repository.database.RezultatDbRepository;
 import triatlon.config.ApplicationContext;
 
 import triatlon.controller.LoginController;
-import triatlon.domain.Arbitru;
-import triatlon.domain.Participant;
-import triatlon.domain.Proba;
-import triatlon.domain.Rezultat;
-import triatlon.repository.*;
-import triatlon.repository.database.ArbitruDbRepository;
-import triatlon.repository.database.ParticipantDbRepository;
-import triatlon.repository.database.ProbaDbRepository;
-import triatlon.repository.database.RezultatDbRepository;
-import triatlon.service.ServiceTriatlon;
-
-import java.sql.SQLException;
+import service.ServiceTriatlon;
 
 
 public class Main extends Application {
@@ -77,19 +74,6 @@ public class Main extends Application {
 //        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         //rezultatDataBase.findAll().forEach(System.out::println);
 
         // Repository<Long, Arbitru> arbitruDataBase =
@@ -113,7 +97,7 @@ public class Main extends Application {
 
 
         LoginController ctrl=loader.getController();
-        ctrl.setService(service);
+        //ctrl.setService(service);
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.setTitle("LoginPage");
         primaryStage.show();
