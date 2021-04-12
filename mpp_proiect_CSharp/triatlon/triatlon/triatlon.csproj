@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{115E3005-7C30-4DFE-935B-D3FB0607A7A5}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>triatlon</RootNamespace>
     <AssemblyName>triatlon</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -34,6 +34,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -98,12 +101,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="domain\Arbitru.cs" />
-    <Compile Include="domain\Entity.cs" />
-    <Compile Include="domain\Participant.cs" />
-    <Compile Include="domain\ParticipantDTO.cs" />
-    <Compile Include="domain\Proba.cs" />
-    <Compile Include="domain\Rezultat.cs" />
     <Compile Include="MainWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,19 +115,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="repository\database\ArbitruRepository.cs" />
-    <Compile Include="repository\IParticipantRepository.cs" />
-    <Compile Include="repository\IRezultatRepository.cs" />
-    <Compile Include="repository\utilsDB\DataBase.cs" />
-    <Compile Include="repository\database\ProbaRepository.cs" />
-    <Compile Include="repository\utilsDB\DBUtils.cs" />
-    <Compile Include="repository\IArbitruRepository.cs" />
-    <Compile Include="repository\IProbaRepository.cs" />
-    <Compile Include="repository\IRepository.cs" />
-    <Compile Include="repository\database\ParticipantRepository.cs" />
-    <Compile Include="repository\RepositoryException.cs" />
-    <Compile Include="repository\database\RezultatRepository.cs" />
-    <Compile Include="service\Service.cs" />
+    <Compile Include="TraitlonEventUserArgs.cs" />
+    <Compile Include="TriatlonClientCtrl.cs" />
     <Compile Include="utils\ComboboxItem.cs" />
     <EmbeddedResource Include="MainWindowForm.resx">
       <DependentUpon>MainWindowForm.cs</DependentUpon>
@@ -166,11 +152,25 @@
       <Project>{fcaf453f-5f35-4c24-bb14-c18fe0b22dcc}</Project>
       <Name>ConnectionUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\model\model.csproj">
+      <Project>{601ab3ba-f53d-47dc-a17c-e9d60ecb1ce5}</Project>
+      <Name>model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\networking\networking.csproj">
+      <Project>{e6aa7fa7-d626-4a3e-bed1-94ed204c6a53}</Project>
+      <Name>networking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\services\services.csproj">
+      <Project>{1bec2092-0d7f-40d3-8566-ac305373e837}</Project>
+      <Name>services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="logdebug.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

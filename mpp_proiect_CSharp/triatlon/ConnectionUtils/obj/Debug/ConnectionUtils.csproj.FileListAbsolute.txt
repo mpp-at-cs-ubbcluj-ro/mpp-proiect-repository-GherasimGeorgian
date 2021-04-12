@@ -30,4 +30,3 @@ C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-Gherasim
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\ConnectionUtils\obj\Debug\ConnectionUtils.csproj.CopyComplete
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\ConnectionUtils\obj\Debug\ConnectionUtils.exe
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\ConnectionUtils\obj\Debug\ConnectionUtils.pdb
-C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\ConnectionUtils\obj\Debug\ConnectionUtils.csprojAssemblyReference.cache
