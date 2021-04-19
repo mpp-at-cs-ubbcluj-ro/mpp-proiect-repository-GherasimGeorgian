@@ -1,0 +1,6 @@
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\model\bin\Debug\model.dll
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\model\bin\Debug\model.pdb
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\model\obj\Debug\model.csproj.CoreCompileInputs.cache
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\model\obj\Debug\model.dll
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\model\obj\Debug\model.pdb
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\model\obj\Debug\model.csprojAssemblyReference.cache

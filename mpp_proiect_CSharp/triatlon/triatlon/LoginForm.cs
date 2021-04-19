@@ -16,19 +16,20 @@ namespace triatlon
     public partial class LoginForm : Form
     {
 
-        private Service service;
+     
         private MainWindowForm mainWindowForm;
-        private Arbitru arbitru = null;
-        public LoginForm()
+        private TriatlonClientCtrl ctrl;
+        public LoginForm(TriatlonClientCtrl ctrl)
         {
             InitializeComponent();
+            this.ctrl = ctrl;
         }
 
-        internal void Set(Service service, MainWindowForm mainWindowForm)
+        internal void Set(MainWindowForm mainWindowForm)
         {
-            this.service = service;
             this.mainWindowForm = mainWindowForm;
         }
+        
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
@@ -49,24 +50,23 @@ namespace triatlon
         
         private void button1_Click(object sender, EventArgs e)
         {
-            String username = textBoxUsername.Text;
-            String password = textBoxPassword.Text;
-            textBoxPassword.Text = "";
-            if (service.Login(username, password) == true)
+            string user = textBoxUsername.Text;
+            string pass = textBoxPassword.Text;
+            try
             {
-                arbitru = service.getArbitrubyUsername(username);
-                mainWindowForm.SetArbitru(arbitru);
-                this.Hide();
-                mainWindowForm.Show();
-                textBoxPassword.Clear();
-                textBoxUsername.Clear();
-            }
-            else
-            {
-                textBoxPassword.Clear();
-                textBoxUsername.Clear();
-                MessageBox.Show("Invalid username or password");
                 
+               
+                ctrl.login(user, pass);
+               
+                ctrl.username = user;
+                ctrl.arbitruLogat();
+                mainWindowForm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Login Error " + ex.Message/*+ex.StackTrace*/, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

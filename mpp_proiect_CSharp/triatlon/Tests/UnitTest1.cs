@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using triatlon.repository;
+
 using System.Configuration;
 namespace Tests
 {
@@ -15,9 +15,7 @@ namespace Tests
         public void testRepoArbitruSave()
         {
 
-            TestRepository tr = new TestRepository();
-            tr.testAdauga();
-            tr.testSterge();
+           
         }
     }
 }
