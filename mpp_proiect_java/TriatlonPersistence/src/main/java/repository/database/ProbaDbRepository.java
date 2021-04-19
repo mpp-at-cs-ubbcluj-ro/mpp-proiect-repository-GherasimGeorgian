@@ -1,5 +1,6 @@
 package repository.database;
 
+import repository.config.ApplicationContext;
 import domain.Proba;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,8 +18,9 @@ public class ProbaDbRepository implements IProbaRepository {
     private DbUtils dbUtils;
     private final static Logger logger = LogManager.getLogger(ProbaDbRepository.class);
 
-    public ProbaDbRepository(Properties props){
+    public ProbaDbRepository(ApplicationContext context){
         //logger.info("Initializing ProbaDbRepository with properties: {} ",props);
+        Properties props = context.getPROPERTIES();
         dbUtils=new DbUtils(props);
 
     }

@@ -2,7 +2,10 @@ package triatlon.services;
 
 import domain.Rezultat;
 
-public interface ITriatlonObserver {
-    void rezultatReceived(Rezultat rezultat) throws TriatlonException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface ITriatlonObserver  extends Remote {
+    void rezultatReceived(Rezultat rezultat) throws TriatlonException, RemoteException;
 
 }

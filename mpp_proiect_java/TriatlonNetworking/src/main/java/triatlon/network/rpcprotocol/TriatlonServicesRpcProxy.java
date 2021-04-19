@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -201,7 +202,7 @@ public class TriatlonServicesRpcProxy implements ITriatlonServices {
             Rezultat rez= (Rezultat) response.data();
             try {
                 client.rezultatReceived(rez);
-            } catch (TriatlonException e) {
+            } catch (TriatlonException| RemoteException e) {
                 e.printStackTrace();
             }
         }

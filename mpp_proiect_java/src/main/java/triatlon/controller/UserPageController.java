@@ -25,16 +25,25 @@ import utils.events.ChangeEvent;
 import utils.observer.Observer;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class UserPageController implements ITriatlonObserver {
+public class UserPageController  extends UnicastRemoteObject implements ITriatlonObserver, Serializable {
+
 
 
     private Arbitru arbitru = null;
     private ITriatlonServices server;
+
+    public UserPageController() throws RemoteException {
+
+    }
+
     public void setService(Arbitru arbitru) {
         this.arbitru = arbitru;
         setNumePrenumeArbitru();

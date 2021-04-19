@@ -1,9 +1,10 @@
 package repository.database;
-
+//import config.ApplicationContext;
 import domain.Arbitru;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import repository.IArbitruRepository;
+import repository.config.ApplicationContext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,8 +18,10 @@ public class ArbitruDbRepository implements IArbitruRepository {
 
     private DbUtils dbUtils;
     private final static Logger logger = LogManager.getLogger(ArbitruDbRepository.class);
-    public ArbitruDbRepository(Properties props){
+
+    public ArbitruDbRepository(ApplicationContext context){
         //logger.info("Initializing ArbitruDbRepository with properties: {} ",props);
+        Properties props = context.getPROPERTIES();
         dbUtils=new DbUtils(props);
     }
 

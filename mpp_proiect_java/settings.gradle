@@ -1,0 +1,11 @@
+rootProject.name = 'mpp_proiect_java'
+include 'TriatlonNetworking'
+include 'TriatlonNetworking'
+include 'TriatlonServices'
+include 'TriatlonModel'
+include 'TriatlonServer'
+include 'TriatlonPersistence'
+include 'TriatlonUtils'
+include 'untitled'
+include 'ClientTriatlon'
+
