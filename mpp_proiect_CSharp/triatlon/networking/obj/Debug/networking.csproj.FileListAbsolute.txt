@@ -18,6 +18,3 @@ C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-Gherasim
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\networking\obj\Debug\networking.csproj.CopyComplete
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\networking\obj\Debug\networking.dll
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\networking\obj\Debug\networking.pdb
-C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\networking\bin\Debug\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\networking\bin\Debug\runtimes\win-x64\native\e_sqlite3.dll
-C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\networking\bin\Debug\runtimes\win-arm\native\e_sqlite3.dll

@@ -27,12 +27,12 @@ namespace server
 
 
             Arbitru userOk = service.getArbitrubyUsername(user.username);
-            
+            Console.WriteLine("ArbitruLogat:!!!!!:" + userOk.ToString());
             if (userOk != null)
             {
-                if (loggedClients.ContainsKey(user.Id))
+                if (loggedClients.ContainsKey(userOk.Id))
                     throw new TriatlonException("User already logged in.");
-                loggedClients[user.Id] = client;
+                loggedClients[userOk.Id] = client;
             }
             else
                 throw new TriatlonException("Authentication failed.");
@@ -41,6 +41,8 @@ namespace server
 
         public  Arbitru getArbitruLogat(string username)
         {
+            Console.WriteLine("ServerImp");
+            
             return service.getArbitrubyUsername(username);
         }
 

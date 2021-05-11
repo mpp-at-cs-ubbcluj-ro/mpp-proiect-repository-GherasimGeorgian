@@ -110,15 +110,20 @@ namespace triatlon
                     string firstName = dataGridView1Row.Cells[0].Value.ToString();
                     string lastName = dataGridView1Row.Cells[1].Value.ToString();
                     ParticipantDTO part1 = new ParticipantDTO(firstName, lastName);
-                    Proba proba = new Proba(34242, "inot", 54);
-                    //Proba proba = ctrl.getProbabyID(Int64.Parse((comboBox1.SelectedItem as ComboboxItem).Value.ToString()));
+                    
+                    Proba proba = ctrl.getProbabyID(Int64.Parse((comboBox1.SelectedItem as ComboboxItem).Value.ToString()));
 
                     //adaugam rezultatul in db
                     ctrl.adaugaRezultat(proba, part1, Int32.Parse(textBox1.Text));
 
-                   // li.Add(new RezultatDTO() { firstName = part1.firstName, lastName = part1.lastName, tipproba = proba.tipProba, numarpuncte = Int32.Parse(textBox1.Text) });
-
+                    //adaugam in datadridview2
+                    dataGridView2.DataSource = null;
+                    IEnumerable<Rezultat> listRezultateProba = ctrl.filterRezultateByProba(proba);
+                   
+                    DataTable table = ConvertListToDataTableRezultat(listRezultateProba.ToList());
                     
+                    dataGridView2.DataSource = table;
+
 
 
                 }
@@ -139,11 +144,7 @@ namespace triatlon
                 Proba proba = ctrl.getProbabyID(Int64.Parse((comboBox2.SelectedItem as ComboboxItem).Value.ToString()));
                 MessageBox.Show("Am gasit proba: " + proba.ToString());
                 IEnumerable<Rezultat> listRezultateProba = ctrl.filterRezultateByProba(proba);
-                //dataGridView2.Rows.Clear();
-                //foreach (Rezultat rez in listRezultateProba)
-                //{
-                //    li.Add(new RezultatDTO() { firstName = rez.participant.firstName, lastName = rez.participant.lastName, tipproba = rez.proba.tipProba, numarpuncte = rez.numarPuncte });
-                //}
+               
                 DataTable table = ConvertListToDataTableRezultat(listRezultateProba.ToList());
                 dataGridView2.DataSource = table;
             }
@@ -210,7 +211,7 @@ namespace triatlon
                     int rez_nou = rez.numarPuncte + Int32.Parse(dgvr.Cells[2].Value.ToString());
                     dgvr.Cells[2].Value = rez_nou.ToString(); 
                 }
-            }
+             }
         }
        
 
