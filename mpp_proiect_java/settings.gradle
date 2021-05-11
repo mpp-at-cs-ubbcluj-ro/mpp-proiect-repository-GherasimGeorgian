@@ -8,4 +8,5 @@ include 'TriatlonPersistence'
 include 'TriatlonUtils'
 include 'untitled'
 include 'ClientTriatlon'
+include 'TriatlonNetworkingProtoBuff'
 
