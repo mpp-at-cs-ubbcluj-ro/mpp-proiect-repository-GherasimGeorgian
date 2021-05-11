@@ -1,0 +1,85 @@
+
+syntax="proto3";
+package triatlon.protocol;
+
+option java_package = "triatlon.network.protobuffprotocol";
+option java_outer_classname = "TriatlonProtobufs";
+
+message StringSS{
+  string nameArbitru=1;
+}
+message LonggSS{
+  uint64 idEntity=1;
+}
+
+message Arbitru{
+  uint64 id=1;
+  string firstname=2;
+  string lastname=3;
+  string email=4;
+  string userName=5;
+  string password=6;
+  uint64 responsabil_proba=7;
+}
+message Participant{
+  string id=1;
+  string firstname=2;
+  string lastname=3;
+  string varsta=4;
+}
+
+message ParticipantDTO{
+  uint64 id=1;
+  string firstname=2;
+  string lastname=3;
+  uint32 punctaj=4;
+}
+
+
+message Proba{
+  uint64 id=1;
+  string tipproba=2;
+  uint32 distanta=3;
+
+}
+message Rezultat{
+  uint64 id=1;
+  Proba proba=2;
+  Participant participant =3;
+  uint32 numarpuncte=4;
+}
+
+
+message TriatlonRequest {
+  enum Type {Unkown=0; Login = 1; Logout = 2; SendRezultat = 3; getArbitrubyName=4;getParticipantiDTO=5;getProbaArbitrubyId=6;filterbyProba=7;findParticipantByNumePrenume=8;}
+
+  // Identifies which request is filled in.
+  Type type = 1;
+
+  // One of the following will be filled in, depending on the type.
+  oneof payload{
+    Arbitru arbitru = 2;
+    Participant participant = 3;
+    ParticipantDTO participantDTO =4;
+    Proba proba = 5;
+    Rezultat rezultat =6;
+    StringSS nameArbitru = 7;
+    LonggSS idEntity = 8;
+  }
+}
+
+message TriatlonResponse{
+  enum Type { Unknown=0; Ok = 1; Error = 2; rezultatReceived=3;getArbitrubyName=4;getParticipantiDTO=5; filterbyProba =6;getProbaArbitrubyId =7;newRezultat=8;findParticipantByNumePrenume=9;}
+
+  // Identifies which request is filled in.
+  Type type = 1;
+
+  // One of the following will be filled in, depending on the type.
+  string error = 2;
+  Rezultat rezultat =3;
+  repeated ParticipantDTO participantiiDTO=4;
+  Arbitru arbitru =5;
+  repeated  Rezultat rezultate=6;
+  Proba proba = 7;
+  Participant participant=8;
+}

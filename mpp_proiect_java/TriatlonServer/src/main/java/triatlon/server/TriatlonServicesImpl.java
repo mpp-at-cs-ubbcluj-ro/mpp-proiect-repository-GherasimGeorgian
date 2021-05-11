@@ -70,6 +70,7 @@ public class TriatlonServicesImpl implements ITriatlonServices {
     private final int defaultThreadsNo=5;
 
     public synchronized void sendRezultat(Rezultat rezultat) throws TriatlonException {
+        System.out.println("Suntem in serverImp");
         ExecutorService executor= Executors.newFixedThreadPool(defaultThreadsNo);
 
         serviceTriatlon.adaugaRezultat(rezultat.getProba(),rezultat.getParticipant(), rezultat.getNumarPuncte());

@@ -57,7 +57,7 @@ public class TriatlonServicesRpcProxy implements ITriatlonServices {
     }
 
     public void sendRezultat(Rezultat message) throws TriatlonException {
-
+        System.out.println("Suntem in rpcproxy");
         Request req=new Request.Builder().type(RequestType.SEND_REZULTAT).data(message).build();
         sendRequest(req);
         Response response=readResponse();

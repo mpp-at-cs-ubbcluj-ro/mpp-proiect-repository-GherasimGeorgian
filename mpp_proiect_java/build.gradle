@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.openjfx.javafxplugin' version '0.0.8'
     id 'application'
+
 }
 
 
@@ -14,21 +15,31 @@ repositories {
 
 application{
 
-    mainClassName='triatlon.StartRpcClientFX'
+    mainClassName='triatlon.StartProtoBuffClient'
 }
 dependencies {
 //    compile project (':TriatlonUtils')
 //    compile project (':TriatlonModel')
 //    compile project (':TriatlonNetworking')
 //    compile project (':TriatlonPersistence')
-      compile project (':TriatlonServices')
+    compile project (':TriatlonNetworkingProtoBuff')
+    compile project (':TriatlonServices')
+
     compile 'org.springframework:spring-context:5.0.4.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group:'org.apache.logging.log4j',name:'log4j-core',version:'2.14.0'
     compile group:'org.apache.logging.log4j',name:'log4j-api', version: '2.14.0'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
     compile 'com.itextpdf:itextpdf:5.1.0'
+// https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.10.0'
+
+    // https://mvnrepository.com/artifact/io.grpc/grpc-all
+    compile group: 'io.grpc', name: 'grpc-all', version: '1.25.0'
 }
+
+
+
 
 //pentru junit 5
 test{
