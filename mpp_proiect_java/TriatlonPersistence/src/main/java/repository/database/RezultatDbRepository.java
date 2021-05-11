@@ -1,5 +1,6 @@
 package repository.database;
 
+import repository.config.ApplicationContext;
 import domain.Proba;
 import domain.Rezultat;
 import org.apache.logging.log4j.LogManager;
@@ -18,8 +19,9 @@ public class RezultatDbRepository implements IRezultatRepository {
     private final static Logger logger = LogManager.getLogger(RezultatDbRepository.class);
     private IParticipantRepository participantDbRepository;
     private IProbaRepository probaDbRepository;
-    public RezultatDbRepository(Properties props,IParticipantRepository participantDbRepository,IProbaRepository probaDbRepository){
+    public RezultatDbRepository(ApplicationContext context, IParticipantRepository participantDbRepository, IProbaRepository probaDbRepository){
         //logger.info("Initializing RezultatDbRepository with properties: {} ",props);
+        Properties props = context.getPROPERTIES();
         dbUtils=new DbUtils(props);
         this.participantDbRepository = participantDbRepository;
         this.probaDbRepository = probaDbRepository;
@@ -87,8 +89,8 @@ public class RezultatDbRepository implements IRezultatRepository {
                     Long idproba = result.getLong("idproba");
                     Long idparticipant = result.getLong("idParticipant");
                     Integer numarpuncte = result.getInt("numarpuncte");
-                    System.out.println(idproba);
-                    System.out.println(idparticipant);
+                    //System.out.println(idproba);
+                    //System.out.println(idparticipant);
                     Rezultat ab = new Rezultat(idrezultat, probaDbRepository.findOne(idproba), participantDbRepository.findOne(idparticipant), numarpuncte);
                     tasks.add(ab);
                 }
@@ -115,8 +117,8 @@ public class RezultatDbRepository implements IRezultatRepository {
                     Long idproba = result.getLong("idproba");
                     Long idparticipant = result.getLong("idParticipant");
                     Integer numarpuncte = result.getInt("numarpuncte");
-                    System.out.println(idproba);
-                    System.out.println(idparticipant);
+                    //System.out.println(idproba);
+                    //System.out.println(idparticipant);
                     Rezultat ab = new Rezultat(idrezultat, probaDbRepository.findOne(idproba), participantDbRepository.findOne(idparticipant), numarpuncte);
                     tasks.add(ab);
                 }

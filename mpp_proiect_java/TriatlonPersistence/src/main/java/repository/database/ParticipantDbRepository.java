@@ -1,5 +1,6 @@
 package repository.database;
 
+import repository.config.ApplicationContext;
 import domain.Participant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,8 +17,9 @@ import java.util.Properties;
 public class ParticipantDbRepository implements IParticipantRepository {
     private DbUtils dbUtils;
     private final static Logger logger = LogManager.getLogger(ParticipantDbRepository.class);
-    public ParticipantDbRepository(Properties props){
+    public ParticipantDbRepository(ApplicationContext context){
         //logger.info("ParticipantDbRepository with properties: {} ",props);
+        Properties props = context.getPROPERTIES();
         dbUtils=new DbUtils(props);
     }
 

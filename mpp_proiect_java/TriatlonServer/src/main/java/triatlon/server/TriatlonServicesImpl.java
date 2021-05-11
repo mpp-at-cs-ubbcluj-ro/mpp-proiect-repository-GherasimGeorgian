@@ -6,6 +6,7 @@ import triatlon.services.ITriatlonObserver;
 import triatlon.services.ITriatlonServices;
 import triatlon.services.TriatlonException;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -76,7 +77,7 @@ public class TriatlonServicesImpl implements ITriatlonServices {
             executor.execute(() -> {
                 try {
                     entry.getValue().rezultatReceived(rezultat);
-                } catch (TriatlonException e) {
+                } catch (TriatlonException|RemoteException e) {
                     System.err.println("Error notifying " + e);
                 }
             });

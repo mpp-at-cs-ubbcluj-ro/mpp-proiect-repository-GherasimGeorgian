@@ -2,7 +2,7 @@ package triatlon.repository;
 
 import junit.framework.TestCase;
 import org.junit.Test;
-import triatlon.domain.Rezultat;
+//import triatlon.domain.Rezultat;
 
 public class RezultatDbRepositoryTest extends TestCase {
 

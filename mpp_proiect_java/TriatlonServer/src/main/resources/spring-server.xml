@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/beans ">
+
+    <bean id="appContext" class="repository.config.ApplicationContext">
+
+    </bean>
+
+    <bean id="arbitruDataBase" class="repository.database.ArbitruDbRepository">
+        <constructor-arg ref="appContext"/>
+    </bean>
+
+    <bean id="participantDataBase" class="repository.database.ParticipantDbRepository">
+        <constructor-arg ref="appContext"/>
+    </bean>
+    <bean id="probaDataBase" class="repository.database.ProbaDbRepository">
+        <constructor-arg ref="appContext"/>
+    </bean>
+
+
+    <bean id="rezultatDataBase" class="repository.database.RezultatDbRepository">
+        <constructor-arg ref="appContext"/>
+        <constructor-arg ref="participantDataBase"/>
+        <constructor-arg ref="probaDataBase"/>
+    </bean>
+
+    <bean id="serviceCeva" class="service.ServiceTriatlon">
+        <constructor-arg ref="arbitruDataBase"/>
+        <constructor-arg ref="participantDataBase"/>
+        <constructor-arg ref="probaDataBase"/>
+        <constructor-arg ref="rezultatDataBase"/>
+    </bean>
+
+
+
+    <bean id="triatlonService" class="triatlon.server.TriatlonServicesImpl">
+        <constructor-arg ref="serviceCeva"/>
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+
+        <property name="serviceName" value="Triatlon"/>
+        <property name="service" ref="triatlonService"/>
+        <property name="serviceInterface" value="triatlon.services.ITriatlonServices"/>
+        <property name="servicePort" value="1099"/>
+    </bean>
+
+
+</beans>

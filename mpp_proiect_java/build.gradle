@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'application'
+}
+
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application{
+
+    mainClassName='triatlon.StartRpcClientFX'
+}
+dependencies {
+//    compile project (':TriatlonUtils')
+//    compile project (':TriatlonModel')
+//    compile project (':TriatlonNetworking')
+//    compile project (':TriatlonPersistence')
+      compile project (':TriatlonServices')
+    compile 'org.springframework:spring-context:5.0.4.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group:'org.apache.logging.log4j',name:'log4j-core',version:'2.14.0'
+    compile group:'org.apache.logging.log4j',name:'log4j-api', version: '2.14.0'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+    compile 'com.itextpdf:itextpdf:5.1.0'
+}
+
+//pentru junit 5
+test{
+    useJUnitPlatform{
+        //ruleaza doar testele cu tagul t si le exclude pe cele cu s
+        includeTags 't'
+        excludeTags 's'
+    }
+}
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' , 'javafx.fxml']
+}
