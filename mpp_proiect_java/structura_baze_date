@@ -1,0 +1,53 @@
+create table arbitru
+(
+    idarbitru         bigint  not null
+        constraint arbitru_pk
+            primary key,
+    firstname         varchar not null,
+    lastname          varchar not null,
+    email             varchar not null,
+    password          varchar not null,
+    username          varchar not null,
+    responsabil_proba bigint
+);
+
+alter table arbitru
+    owner to postgres;
+
+create table participant
+(
+    idparticipant bigint  not null
+        constraint participant_pk
+            primary key,
+    firstname     varchar not null,
+    lastname      varchar not null,
+    varsta        integer not null
+);
+
+alter table participant
+    owner to postgres;
+
+create table rezultat
+(
+    idrezultat      bigint not null
+        constraint rezultat_pk
+            primary key,
+    idproba         bigint not null,
+    "idParticipant" bigint not null,
+    "numarPuncte"   integer
+);
+
+alter table rezultat
+    owner to postgres;
+
+create table proba
+(
+    idproba    bigint  not null
+        constraint proba_pk
+            primary key,
+    "tipProba" varchar not null,
+    distanta   integer not null
+);
+
+alter table proba
+    owner to postgres;
