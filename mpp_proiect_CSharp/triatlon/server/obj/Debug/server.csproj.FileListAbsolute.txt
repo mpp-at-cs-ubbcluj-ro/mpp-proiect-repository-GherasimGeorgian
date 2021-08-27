@@ -52,3 +52,9 @@ C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-Gherasim
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\System.Memory.xml
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\protobuff3.dll
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\Google.Protobuf.dll
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\protobuff3.pdb
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\protobuff3.dll.config
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\Google.Protobuf.pdb
+C:\Users\Ghera\source\repos\mpp-at-cs-ubbcluj-ro\mpp-proiect-repository-GherasimGeorgian\mpp_proiect_CSharp\triatlon\server\bin\Debug\Google.Protobuf.xml

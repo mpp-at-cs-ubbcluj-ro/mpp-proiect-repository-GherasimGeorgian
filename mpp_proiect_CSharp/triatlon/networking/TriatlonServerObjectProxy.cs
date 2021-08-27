@@ -139,6 +139,7 @@ namespace networking
 
 		public virtual Arbitru getArbitruLogat(string user)
 		{
+			Console.WriteLine("TriatlonServerObjectProxy nope");
 			if (initiate == 0)
 			{
 				initializeConnection();
