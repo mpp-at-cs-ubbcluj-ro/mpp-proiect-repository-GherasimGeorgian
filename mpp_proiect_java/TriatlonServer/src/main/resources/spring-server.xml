@@ -4,23 +4,30 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 http://www.springframework.org/schema/beans ">
 
-    <bean id="appContext" class="repository.config.ApplicationContext">
+    <bean id="appContext" class="triatlon.repository.config.ApplicationContext">
 
     </bean>
 
-    <bean id="arbitruDataBase" class="repository.database.ArbitruDbRepository">
+    <!--<bean id="arbitruDataBase" class="ArbitruDbRepository">
+        <constructor-arg ref="appContext"/>
+    </bean>
+-->
+
+
+    <bean id="arbitruDataBase" class="triatlon.repository.orm.ArbitruORMRepository">
+
+    </bean>
+
+
+    <bean id="participantDataBase" class="triatlon.repository.database.ParticipantDbRepository">
+        <constructor-arg ref="appContext"/>
+    </bean>
+    <bean id="probaDataBase" class="triatlon.repository.database.ProbaDbRepository">
         <constructor-arg ref="appContext"/>
     </bean>
 
-    <bean id="participantDataBase" class="repository.database.ParticipantDbRepository">
-        <constructor-arg ref="appContext"/>
-    </bean>
-    <bean id="probaDataBase" class="repository.database.ProbaDbRepository">
-        <constructor-arg ref="appContext"/>
-    </bean>
 
-
-    <bean id="rezultatDataBase" class="repository.database.RezultatDbRepository">
+    <bean id="rezultatDataBase" class="triatlon.repository.database.RezultatDbRepository">
         <constructor-arg ref="appContext"/>
         <constructor-arg ref="participantDataBase"/>
         <constructor-arg ref="probaDataBase"/>

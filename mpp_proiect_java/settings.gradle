@@ -9,4 +9,5 @@ include 'TriatlonUtils'
 include 'untitled'
 include 'ClientTriatlon'
 include 'TriatlonNetworkingProtoBuff'
+include 'RestServices'
 

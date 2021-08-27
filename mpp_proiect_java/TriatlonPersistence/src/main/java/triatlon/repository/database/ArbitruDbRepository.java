@@ -1,10 +1,10 @@
-package repository.database;
+package triatlon.repository.database;
 //import config.ApplicationContext;
 import domain.Arbitru;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import repository.IArbitruRepository;
-import repository.config.ApplicationContext;
+import triatlon.repository.IArbitruRepository;
+import triatlon.repository.config.ApplicationContext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

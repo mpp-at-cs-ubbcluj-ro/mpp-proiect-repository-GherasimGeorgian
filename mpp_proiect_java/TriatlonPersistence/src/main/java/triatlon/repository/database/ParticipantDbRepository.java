@@ -1,10 +1,10 @@
-package repository.database;
+package triatlon.repository.database;
 
-import repository.config.ApplicationContext;
+import triatlon.repository.config.ApplicationContext;
 import domain.Participant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import repository.IParticipantRepository;
+import triatlon.repository.IParticipantRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="domain.Arbitru"
+           table="Arbitru">
+        <id name="id" column="idarbitru">
+            <generator class="increment"/>
+        </id>
+        <property
+                name="firstName"
+                column="firstname"/>
+        <property
+                name="lastName"
+                column="lastname"/>
+        <property
+                name="email"
+                column="email"/>
+        <property
+                name="password"
+                column="password"/>
+        <property
+                name="userName"
+                column="username"/>
+
+        <property name="responsabil_proba"
+                  column="responsabil_proba"/>
+    </class>
+</hibernate-mapping>

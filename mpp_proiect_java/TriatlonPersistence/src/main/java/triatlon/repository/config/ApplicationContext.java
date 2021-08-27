@@ -1,9 +1,11 @@
-package repository.config;
+package triatlon.repository.config;
+
+import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-
+@Component
 public class ApplicationContext {
     public String CONFIG_LOCATION;
     public ApplicationContext(){

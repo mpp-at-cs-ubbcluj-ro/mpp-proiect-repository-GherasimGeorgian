@@ -1,4 +1,4 @@
-package repository.database;
+package triatlon.repository.database;
 
 
 import org.apache.logging.log4j.LogManager;
