@@ -13,6 +13,10 @@ namespace triatlon.domain
         public string tipProba { get; set; }
 
         public int distanta { get; set; }
+        public Proba()
+        {
+
+        }
 
         public Proba(long idProba,string tipProba1,int distanta1)
         {
