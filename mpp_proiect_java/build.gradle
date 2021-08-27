@@ -15,7 +15,7 @@ repositories {
 
 application{
 
-    mainClassName='triatlon.StartProtoBuffClient'
+    mainClassName='triatlon.StartRpcClientFX'
 }
 dependencies {
 //    compile project (':TriatlonUtils')
@@ -33,9 +33,12 @@ dependencies {
     compile 'com.itextpdf:itextpdf:5.1.0'
 // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.10.0'
-
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0-b170201.1204'
     // https://mvnrepository.com/artifact/io.grpc/grpc-all
     compile group: 'io.grpc', name: 'grpc-all', version: '1.25.0'
+    compile('javax.xml.bind:jaxb-api:2.3.0')
+    compile('javax.activation:activation:1.1')
+    compile('org.glassfish.jaxb:jaxb-runtime:2.3.0')
 }
 
 

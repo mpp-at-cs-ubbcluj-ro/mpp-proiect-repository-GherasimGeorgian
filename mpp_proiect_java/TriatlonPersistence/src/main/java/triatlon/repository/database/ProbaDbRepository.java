@@ -1,10 +1,10 @@
-package repository.database;
+package triatlon.repository.database;
 
-import repository.config.ApplicationContext;
+import triatlon.repository.config.ApplicationContext;
 import domain.Proba;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import repository.IProbaRepository;
+import triatlon.repository.IProbaRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -94,4 +94,5 @@ public class ProbaDbRepository implements IProbaRepository {
         //dbUtils.CloseConnection(con);
         return tasks;
     }
+
 }

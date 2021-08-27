@@ -7,6 +7,8 @@ public class Proba extends Entity<Long>{
      */
     private String tipProba;
     private Integer distanta;
+    public Proba(){
+    }
 
     public Proba(Long idProba,String tipProba,Integer distanta){
         setId(idProba);

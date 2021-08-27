@@ -2,10 +2,10 @@ package service;
 
 
 import domain.*;
-import repository.IArbitruRepository;
-import repository.IParticipantRepository;
-import repository.IProbaRepository;
-import repository.IRezultatRepository;
+import triatlon.repository.IArbitruRepository;
+import triatlon.repository.IParticipantRepository;
+import triatlon.repository.IProbaRepository;
+import triatlon.repository.IRezultatRepository;
 import utils.events.ChangeEvent;
 import utils.events.ChangeEventType;
 import utils.observer.Observable;
@@ -72,6 +72,7 @@ public class ServiceTriatlon implements Observable<ChangeEvent> {
     public Arbitru getArbitruByName(String username){
        for(Arbitru arbitru : arbitruDataBase.findAll()){
             if(arbitru.getUserName().equals(username)){
+                System.out.println("Am gasit arbitrul logat: "+ arbitru.getUserName());
                 return arbitru;
             }
         }

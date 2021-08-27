@@ -1,4 +1,4 @@
-package repository;
+package triatlon.repository;
 
 public interface IRepository<ID, T> {
 

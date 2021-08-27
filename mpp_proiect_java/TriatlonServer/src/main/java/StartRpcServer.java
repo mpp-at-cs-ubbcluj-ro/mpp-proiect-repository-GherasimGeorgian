@@ -2,21 +2,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 //import service.ServiceTriatlon;
 //import triatlon.services.ITriatlonServices;
-import repository.IArbitruRepository;
-import repository.IParticipantRepository;
-import repository.IProbaRepository;
-import repository.IRezultatRepository;
-import repository.database.ArbitruDbRepository;
-import repository.database.ParticipantDbRepository;
-import repository.database.ProbaDbRepository;
-import repository.database.RezultatDbRepository;
 //import triatlon.network.utils.AbstractServer;
 //import triatlon.network.utils.ChatRpcConcurrentServer;
 //import triatlon.network.utils.ServerException;
-import triatlon.server.TriatlonServicesImpl;
 
-import java.io.IOException;
-import java.util.Properties;
 
 public class StartRpcServer {
    // private static int defaultPort=55555;

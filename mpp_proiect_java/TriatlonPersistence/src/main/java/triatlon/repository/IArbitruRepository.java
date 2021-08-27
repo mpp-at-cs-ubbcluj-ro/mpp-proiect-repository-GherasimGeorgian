@@ -1,4 +1,4 @@
-package repository;
+package triatlon.repository;
 
 
 import domain.Arbitru;

@@ -9,22 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import repository.IArbitruRepository;
-import repository.IParticipantRepository;
-import repository.IProbaRepository;
-import repository.IRezultatRepository;
-import repository.database.ArbitruDbRepository;
-import repository.database.ParticipantDbRepository;
-import repository.database.ProbaDbRepository;
-import repository.database.RezultatDbRepository;
 
 import triatlon.controller.LoginController;
 import triatlon.controller.UserPageController;
 //import triatlon.network.rpcprotocol.TriatlonServicesRpcProxy;
-import service.ServiceTriatlon;
 
-import java.io.IOException;
-import java.util.Properties;
 
 public class StartRpcClientFX extends Application {
 //

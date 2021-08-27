@@ -1,6 +1,8 @@
 package domain;
 
-public class Arbitru extends Entity<Long>{
+import java.io.Serializable;
+
+public class Arbitru extends Entity<Long> implements Serializable {
 
     private String firstName;
     private String lastName;
@@ -8,6 +10,7 @@ public class Arbitru extends Entity<Long>{
     private String userName;
     private String password;
     private long responsabil_proba;
+    private long id;
 
     public Arbitru(Long idArbitru,String firstName, String lastName,String email,String password,String userName,long responsabil_proba){
         setId(idArbitru);
@@ -17,6 +20,18 @@ public class Arbitru extends Entity<Long>{
         this.userName = userName;
         this.password = password;
         this.responsabil_proba = responsabil_proba;
+    }
+    public Arbitru(){
+
+    }
+
+
+    public Long getid() {
+        return super.getId();
+    }
+
+    public void setid(Long id){
+        super.setId(id);
     }
 
     @Override
@@ -72,4 +87,11 @@ public class Arbitru extends Entity<Long>{
     }
 
 
+    public long getResponsabil_proba() {
+        return responsabil_proba;
+    }
+
+    public void setResponsabil_proba(long responsabil_proba) {
+        this.responsabil_proba = responsabil_proba;
+    }
 }

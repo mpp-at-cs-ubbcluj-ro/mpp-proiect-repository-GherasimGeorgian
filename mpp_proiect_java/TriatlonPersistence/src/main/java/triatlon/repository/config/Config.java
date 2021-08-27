@@ -1,4 +1,4 @@
-package repository.config;
+package triatlon.repository.config;
 
 import java.io.FileReader;
 import java.io.IOException;
